@@ -1,6 +1,6 @@
 const USER_API_URL = "https://randomuser.me/api/?results=7";
 
-async function getUsers() {
+export async function getUsers() {
   try {
     const userResponse = await fetch(USER_API_URL);
     if (!userResponse.ok) {
