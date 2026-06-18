@@ -13,6 +13,9 @@ async function getUsers() {
     const mainUser = getMainUser(users);
     console.log(mainUser);
 
+    const friends = getFriends(users);
+    console.log(friends);
+
     return users;
   } catch (error) {
     console.error("Error fetching users:", error.message);
@@ -25,7 +28,23 @@ function getMainUser(users) {
   const lastName = users.results[0].name.last;
   const city = users.results[0].location.city;
   const state = users.results[0].location.state;
+  const picture = users.results[0].picture.large;
 
-  const mainUser = { firstName, lastName, city, state };
+  const mainUser = { firstName, lastName, city, state, picture };
   return mainUser;
+}
+
+function getFriends(users) {
+  const friends = [];
+  for (let i = 1; i < users.results.length; i++) {
+    const result = users.results[i];
+
+    const firstName = result.name.first;
+    const lastName = result.name.last;
+    const picture = result.picture.large;
+
+    const friend = { firstName, lastName, picture };
+    friends.push(friend);
+  }
+  return friends;
 }
