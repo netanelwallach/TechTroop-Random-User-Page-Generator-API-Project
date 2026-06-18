@@ -8,15 +8,19 @@ async function getUsers() {
     }
 
     const users = await userResponse.json();
+    console.log(users);
 
-    const mainUser = getMainUSer();
+    const mainUser = getMainUser(users);
+    console.log(mainUser);
+
+    return users;
   } catch (error) {
     console.error("Error fetching users:", error.message);
     return null;
   }
 }
 
-function getMainUSer(users) {
+function getMainUser(users) {
   const firstName = users.results[0].name.first;
   const lastName = users.results[0].name.last;
   const city = users.results[0].location.city;
