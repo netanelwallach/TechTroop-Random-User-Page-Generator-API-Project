@@ -16,7 +16,7 @@ export async function getUsers() {
     const friends = getFriends(users);
     console.log(friends);
 
-    return users;
+    return { mainUser, friends };
   } catch (error) {
     console.error("Error fetching users:", error.message);
     return null;
