@@ -1,6 +1,6 @@
 const POKEMON_API_URL = "https://pokeapi.co/api/v2/pokemon/";
 
-async function getRandomPokemon() {
+export async function getRandomPokemon() {
   try {
     const id = Math.floor(Math.random() * 1025) + 1;
 

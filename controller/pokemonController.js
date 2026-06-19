@@ -11,8 +11,8 @@ export async function initPokemonController() {
   }
 }
 
-function initAboutMe(PokemonData) {
-  document.getElementById("polemon-name").textContent = PokemonData.name;
+function initPokemon(PokemonData) {
+  document.getElementById("pokemon-name").textContent = PokemonData.name;
 
   document.getElementById("pokemon-image").src = PokemonData.image;
   document.getElementById("pokemon-image").alt = PokemonData.name;
