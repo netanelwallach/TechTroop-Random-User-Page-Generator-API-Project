@@ -13,7 +13,24 @@ async function getRandomPokemon() {
 
     const pokemon = await pokemonRsponse.json();
     console.log(pokemon);
+
+    const pokemonNameImage = getNameImage(pokemon);
+    console.log(pokemonNameImage);
+
+    return pokemonNameImage;
   } catch (error) {
     console.error("Failed to fetch Pokemon:", error);
   }
+}
+
+function getNameImage(pokemon) {
+  const name = pokemon.name;
+
+  // consult AI to get the best image from all that exist
+  const officialArt = pokemon.sprites.other["official-artwork"].front_default;
+  const dreamWorldArt = pokemon.sprites.other.dream_world.front_default;
+  const defaultSprite = pokemon.sprites.front_default;
+
+  const image = officialArt || dreamWorldArt || defaultSprite;
+  return { name, image };
 }
