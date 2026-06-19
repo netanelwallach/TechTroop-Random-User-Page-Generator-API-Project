@@ -1,4 +1,4 @@
-import { getUsers } from "../services/userModel.js";
+import { getUsers } from "../services/userService.js";
 
 export async function initUserController() {
   try {
