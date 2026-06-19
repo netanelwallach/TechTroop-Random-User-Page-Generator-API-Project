@@ -9,3 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initPokemonController();
   initQuoteController();
 });
+
+const generate = document.getElementById("generate-user");
+generate.addEventListener("click", () => {
+  initUserController();
+  initAboutMeController();
+  initPokemonController();
+  initQuoteController();
+});
