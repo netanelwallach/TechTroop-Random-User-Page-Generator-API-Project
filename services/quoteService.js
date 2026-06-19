@@ -7,12 +7,13 @@ export async function getQuote() {
       throw new Error("failed creating About Me");
     }
 
-    let quote = await quoteResponse.json();
+    const quoteData = await quoteResponse.json();
+    const quote = quoteData.quote;
     console.log(quote);
 
     return quote;
   } catch (error) {
-    console.error("Error fetching aboutMe:", error.message);
+    console.error("Error fetching quote:", error.message);
     return null;
   }
 }
