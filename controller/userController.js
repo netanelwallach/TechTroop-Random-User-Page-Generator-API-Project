@@ -17,8 +17,8 @@ export async function initUserController() {
 
 function initMainUser(mainUser) {
   const mainUserPicture = document.getElementById("main-user-picture");
-  const mainUserFullname = document.getElementById("main-user-picture");
-  const mainUserLocation = document.getElementById("main-user-picture");
+  const mainUserFullname = document.getElementById("main-user-fullname");
+  const mainUserLocation = document.getElementById("main-user-location");
 
   mainUserPicture.src = mainUser.picture;
   mainUserPicture.alt = mainUser.firstName;
