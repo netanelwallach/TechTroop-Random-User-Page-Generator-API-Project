@@ -5,13 +5,13 @@ export async function initPokemonController() {
     const PokemonData = await getRandomPokemon();
     if (!PokemonData) return;
 
-    initPokemon(PokemonData);
+    renderPokemon(PokemonData);
   } catch (error) {
     console.error("Controller Error:", error);
   }
 }
 
-function initPokemon(PokemonData) {
+export function renderPokemon(PokemonData) {
   const pokemonName = document.getElementById("pokemon-name");
   const pokemonImage = document.getElementById("pokemon-image");
 

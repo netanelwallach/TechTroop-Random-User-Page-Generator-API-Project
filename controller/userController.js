@@ -7,15 +7,15 @@ export async function initUserController() {
 
     const { mainUser, friends } = userData;
 
-    initMainUser(mainUser);
+    renderMainUser(mainUser);
 
-    initFriends(friends);
+    renderFriends(friends);
   } catch (error) {
     console.error("Controller Error:", error);
   }
 }
 
-function initMainUser(mainUser) {
+export function renderMainUser(mainUser) {
   const mainUserDiv = document.getElementById("main-user"); // element for id and also later for design
   const mainUserPicture = document.getElementById("main-user-picture");
   const mainUserFullname = document.getElementById("main-user-fullname");
@@ -31,7 +31,7 @@ function initMainUser(mainUser) {
   mainUserLocation.textContent = `${mainUser.city}, ${mainUser.state}`;
 }
 
-export function initFriends(friends) {
+export function renderFriends(friends) {
   const friendsContainer = document.getElementById("friends-container");
   friendsContainer.innerHTML = friends
     .map(

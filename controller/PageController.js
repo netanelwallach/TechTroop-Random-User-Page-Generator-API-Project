@@ -1,4 +1,7 @@
-import { initFriends } from "./userController.js";
+import { renderMainUser, renderFriends } from "./userController.js";
+import { renderPokemon } from "./pokemonController.js";
+import { renderQuote } from "./quoteController.js";
+import { renderAboutMe } from "./aboutMeController.js";
 
 export function initPageStateController() {
   const saveBtn = document.getElementById("save-user");
@@ -10,7 +13,7 @@ export function initPageStateController() {
 
 function savePageSnapshot() {
   const mainUserDiv = document.getElementById("main-user");
-  const pokemonImg = document.getElementById("pokemon-image");
+  const pokemonImage = document.getElementById("pokemon-image");
 
   if (!mainUserDiv || !mainUserDiv.dataset.userId) {
     console.log("No user data available to save!");
@@ -25,7 +28,7 @@ function savePageSnapshot() {
     quote: document.getElementById("quote").textContent,
     pokemon: {
       name: document.getElementById("pokemon-name").textContent,
-      image: pokemonImg ? pokemonImg.src : "",
+      image: pokemonImage ? pokemonImage.src : "",
     },
     aboutMe: document.getElementById("about-me").textContent,
     friends: Array.from(document.querySelectorAll("#friends-container li")).map(
@@ -53,32 +56,11 @@ function loadPageSnapshot() {
 
   const snapshot = JSON.parse(savedUserData);
 
-  const mainUserDiv = document.getElementById("main-user");
-  mainUserDiv.dataset.userId = snapshot.userId;
-
-  const mainUserPicture = document.getElementById("main-user-picture");
-  const mainUserFullname = document.getElementById("main-user-fullname");
-  const mainUserLocation = document.getElementById("main-user-location");
-  mainUserPicture.src = snapshot.picture;
-  mainUserFullname.textContent = snapshot.fullName;
-  mainUserLocation.textContent = snapshot.location;
-
-  const quote = document.getElementById("quote");
-  quote.textContent = snapshot.quote;
-
-  const pokemonName = document.getElementById("pokemon-name");
-  pokemonName.textContent = snapshot.pokemon.name;
-
-  const pokemonImage = document.getElementById("pokemon-image");
-  if (pokemonImage) {
-    pokemonImage.src = snapshot.pokemon.image;
-    pokemonImage.alt = snapshot.pokemon.name;
-  }
-
-  const aboutMe = document.getElementById("about-me");
-  aboutMe.textContent = snapshot.aboutMe;
-
-  initFriends(snapshot.friends);
+  renderMainUser(snapshot.mainUser);
+  renderFriends(snapshot.friends);
+  renderPokemon(snapshot.pokemon);
+  renderQuote(snapshot.quote);
+  renderAboutMe(snapshot.aboutMe);
 
   console.log("User page snapshot loaded successfully!");
   console.log("User page snapshot loaded successfully!");

@@ -5,13 +5,13 @@ export async function initQuoteController() {
     const quoteData = await getQuote();
     if (!quoteData) return;
 
-    initQuote(quoteData);
+    renderQuote(quoteData);
   } catch (error) {
     console.error("Controller Error:", error);
   }
 }
 
-function initQuote(quoteData) {
+export function renderQuote(quoteData) {
   const quote = document.getElementById("quote");
   quote.textContent = `"${quoteData}"`;
 }

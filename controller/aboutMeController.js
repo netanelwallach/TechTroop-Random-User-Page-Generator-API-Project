@@ -5,13 +5,13 @@ export async function initAboutMeController() {
     const aboutMeData = await getAboutMe();
     if (!aboutMeData) return;
 
-    initAboutMe(aboutMeData);
+    renderAboutMe(aboutMeData);
   } catch (error) {
     console.error("Controller Error:", error);
   }
 }
 
-function initAboutMe(aboutMeData) {
+export function renderAboutMe(aboutMeData) {
   const aboutMe = document.getElementById("about-me");
   aboutMe.textContent = aboutMeData;
 }
