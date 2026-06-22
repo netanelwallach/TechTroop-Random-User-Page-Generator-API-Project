@@ -98,7 +98,11 @@ export function loadPageSnapshot() {
   renderMainUser(user);
   renderFriends(user.friends || []);
   renderPokemon(user.pokemon);
-  renderQuote(user.quote);
+  let displayQuote = user.quote;
+  if (displayQuote.startsWith('"') && displayQuote.endsWith('"')) {
+    displayQuote = displayQuote.slice(1, -1);
+  }
+  renderQuote(displayQuote);
   renderAboutMe(user.aboutMe);
 }
 
