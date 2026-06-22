@@ -16,9 +16,12 @@ export async function initUserController() {
 }
 
 function initMainUser(mainUser) {
+  const mainUserDiv = document.getElementById("main-user"); // element for id and also later for design
   const mainUserPicture = document.getElementById("main-user-picture");
   const mainUserFullname = document.getElementById("main-user-fullname");
   const mainUserLocation = document.getElementById("main-user-location");
+
+  mainUserDiv.dataset.userId = mainUser.id;
 
   mainUserPicture.src = mainUser.picture;
   mainUserPicture.alt = mainUser.firstName;

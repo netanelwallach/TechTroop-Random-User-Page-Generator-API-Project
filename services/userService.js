@@ -24,13 +24,14 @@ export async function getUsers() {
 }
 
 function getMainUser(users) {
+  const id = users.results[0].login.uuid; // uniqe id for save and load
   const firstName = users.results[0].name.first;
   const lastName = users.results[0].name.last;
   const city = users.results[0].location.city;
   const state = users.results[0].location.state;
   const picture = users.results[0].picture.large;
 
-  const mainUser = { firstName, lastName, city, state, picture };
+  const mainUser = { id, firstName, lastName, city, state, picture };
   return mainUser;
 }
 

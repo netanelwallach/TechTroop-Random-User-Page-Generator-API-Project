@@ -17,3 +17,18 @@ generate.addEventListener("click", () => {
   initPokemonController();
   initQuoteController();
 });
+
+// const saveUser = document.getElementById("save-user");
+
+// saveUser.addEventListener("click", () => {
+//   const userSnapshot = {
+//     userId: document.getElementById("userId").innerText,
+//     quote: document.getElementById("quoteSection").innerText,
+//     pokemon: document.getElementById("pokemonName").innerText,
+//     meatText: document.getElementById("meatTextSection").innerText,
+//     friends: [],
+//   };
+
+//   localStorage.setItem("savedUserPage", JSON.stringify(userSnapshot));
+//   alert("User page snapshot saved locally!");
+// });
