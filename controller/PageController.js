@@ -17,7 +17,6 @@ export function initPageStateController() {
 
 function savePageSnapshot() {
   const mainUserDiv = document.getElementById("main-user");
-  const pokemonImage = document.getElementById("pokemon-image");
 
   if (!mainUserDiv || !mainUserDiv.dataset.userId) {
     console.log("No user data available to save!");
@@ -38,7 +37,7 @@ function savePageSnapshot() {
   const quote = document.getElementById("quote").textContent;
 
   const pokemonName = document.getElementById("pokemon-name").textContent;
-  const pokemonImage = document.getElementById("pokemon-image").src;
+  const pokemonImage = document.getElementById("pokemon-image");
 
   const aboutMe = document.getElementById("about-me").textContent;
 
@@ -52,7 +51,7 @@ function savePageSnapshot() {
     quote: quote,
     pokemon: {
       name: pokemonName,
-      image: pokemonImage,
+      image: pokemonImage.src,
     },
     aboutMe: aboutMe,
     friends: Array.from(document.querySelectorAll("#friends-container li")).map(
@@ -71,22 +70,30 @@ function savePageSnapshot() {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentCollection));
 
   console.log("User page snapshot saved locally!");
+  updateDropdownUI();
 }
 
 export function loadPageSnapshot() {
+  const dropdown = document.getElementById("saved-users-dropdown");
   // Pull your target data directly from your saved selection system
   // For standard loading from the active record:
   const currentCollection =
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {};
 
-  const savedKeys = Object.keys(currentCollection);
-  if (savedKeys.length === 0) {
-    console.log("No profiles saved in storage yet.");
-    return;
+  let selectedUserId = dropdown ? dropdown.value : "";
+
+  if (!selectedUserId) {
+    const savedKeys = Object.keys(currentCollection);
+    if (savedKeys.length === 0) {
+      console.log("No profiles saved in storage yet.");
+      return;
+    }
+    selectedUserId = savedKeys[0];
   }
 
   // const savedUserData = localStorage.getItem("savedUserPage");
-  const user = currentCollection[savedKeys[0]];
+  const user = currentCollection[selectedUserId];
+  if (!user) return;
 
   renderMainUser(user);
   renderFriends(user.friends || []);
