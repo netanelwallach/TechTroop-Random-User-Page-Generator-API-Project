@@ -5,6 +5,7 @@ export function initPageStateController() {
   const loadBtn = document.getElementById("load-user");
 
   if (saveBtn) saveBtn.addEventListener("click", savePageSnapshot);
+  if (loadBtn) loadBtn.addEventListener("click", loadPageSnapshot);
 }
 
 function savePageSnapshot() {
@@ -40,4 +41,45 @@ function savePageSnapshot() {
   localStorage.setItem("savedUserPage", JSON.stringify(pageSnapshot));
   console.log("User page snapshot saved locally!");
   console.log("User page snapshot saved locally!");
+}
+
+function loadPageSnapshot() {
+  const savedUserData = localStorage.getItem("savedUserPage");
+
+  if (!savedUserData) {
+    console.log("No saved user page found in local storage!");
+    return;
+  }
+
+  const snapshot = JSON.parse(savedUserData);
+
+  const mainUserDiv = document.getElementById("main-user");
+  mainUserDiv.dataset.userId = snapshot.userId;
+
+  const mainUserPicture = document.getElementById("main-user-picture");
+  const mainUserFullname = document.getElementById("main-user-fullname");
+  const mainUserLocation = document.getElementById("main-user-location");
+  mainUserPicture.src = snapshot.picture;
+  mainUserFullname.textContent = snapshot.fullName;
+  mainUserLocation.textContent = snapshot.location;
+
+  const quote = document.getElementById("quote");
+  quote.textContent = snapshot.quote;
+
+  const pokemonName = document.getElementById("pokemon-name");
+  pokemonName.textContent = snapshot.pokemon.name;
+
+  const pokemonImage = document.getElementById("pokemon-image");
+  if (pokemonImage) {
+    pokemonImage.src = snapshot.pokemon.image;
+    pokemonImage.alt = snapshot.pokemon.name;
+  }
+
+  const aboutMe = document.getElementById("about-me");
+  aboutMe.textContent = snapshot.aboutMe;
+
+  initFriends(snapshot.friends);
+
+  console.log("User page snapshot loaded successfully!");
+  console.log("User page snapshot loaded successfully!");
 }
