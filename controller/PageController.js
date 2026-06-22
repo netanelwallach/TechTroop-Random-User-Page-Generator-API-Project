@@ -20,17 +20,36 @@ function savePageSnapshot() {
     return;
   }
 
+  // Split up fullName back to firstName and lastName and location to city and state
+  const fullName = document.getElementById("main-user-fullname");
+  const nameParts = fullName.textContent.split(" ");
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(" ");
+
+  const location = document.getElementById("main-user-location");
+  const locationParts = location.textContent.split(", ");
+  const city = locationParts[0];
+  const state = locationParts[1];
+
+  const quote = document.getElementById("quote").textContent;
+
+  const pokemonName = document.getElementById("pokemon-name").textContent;
+
+  const aboutMe = document.getElementById("about-me").textContent;
+
   const pageSnapshot = {
     userId: mainUserDiv.dataset.userId,
     picture: document.getElementById("main-user-picture").src,
-    fullName: document.getElementById("main-user-fullname").textContent,
-    location: document.getElementById("main-user-location").textContent,
-    quote: document.getElementById("quote").textContent,
+    firstName: firstName,
+    lastName: lastName,
+    city: city,
+    state: state,
+    quote: quote,
     pokemon: {
-      name: document.getElementById("pokemon-name").textContent,
+      name: pokemonName,
       image: pokemonImage ? pokemonImage.src : "",
     },
-    aboutMe: document.getElementById("about-me").textContent,
+    aboutMe: aboutMe,
     friends: Array.from(document.querySelectorAll("#friends-container li")).map(
       // get the elements of frindes to save
       (li) => ({
@@ -42,7 +61,6 @@ function savePageSnapshot() {
   };
 
   localStorage.setItem("savedUserPage", JSON.stringify(pageSnapshot));
-  console.log("User page snapshot saved locally!");
   console.log("User page snapshot saved locally!");
 }
 
@@ -62,6 +80,5 @@ function loadPageSnapshot() {
   renderQuote(snapshot.quote);
   renderAboutMe(snapshot.aboutMe);
 
-  console.log("User page snapshot loaded successfully!");
   console.log("User page snapshot loaded successfully!");
 }
