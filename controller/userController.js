@@ -31,7 +31,7 @@ function initMainUser(mainUser) {
   mainUserLocation.textContent = `${mainUser.city}, ${mainUser.state}`;
 }
 
-function initFriends(friends) {
+export function initFriends(friends) {
   const friendsContainer = document.getElementById("friends-container");
   friendsContainer.innerHTML = friends
     .map(
