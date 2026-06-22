@@ -74,20 +74,34 @@ function savePageSnapshot() {
 }
 
 function loadPageSnapshot() {
-  const savedUserData = localStorage.getItem("savedUserPage");
+  // const savedUserData = localStorage.getItem("savedUserPage");
+  const dropdown = document.getElementById("saved-users-dropdown");
+  if (!dropdown) return;
 
-  if (!savedUserData) {
-    console.log("No saved user page found in local storage!");
+  const selectedUserId = dropdown.value;
+
+  if (!selectedUserId) {
+    console.log("Please select a saved user from the dropdown menu first.");
     return;
   }
 
-  const snapshot = JSON.parse(savedUserData);
+  // const snapshot = JSON.parse(savedUserData);
+  const currentCollection =
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {};
+  const user = currentCollection[selectedUserId];
 
-  renderMainUser(snapshot.mainUser);
-  renderFriends(snapshot.friends);
-  renderPokemon(snapshot.pokemon);
-  renderQuote(snapshot.quote);
-  renderAboutMe(snapshot.aboutMe);
+  if (!user) {
+    alert("Error: Selected user data profile could not be retrieved.");
+    return;
+  }
 
-  console.log("User page snapshot loaded successfully!");
+  renderMainUser(user);
+  renderFriends(user.friends);
+
+  renderPokemon(user.pokemon);
+
+  renderQuote(user.quote);
+  renderAboutMe(user.aboutMe);
+
+  console.log("User page loaded successfully!");
 }
