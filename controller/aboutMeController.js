@@ -12,5 +12,6 @@ export async function initAboutMeController() {
 }
 
 function initAboutMe(aboutMeData) {
-  document.getElementById("about-me").textContent = aboutMeData;
+  const aboutMe = document.getElementById("about-me");
+  aboutMe.textContent = aboutMeData;
 }

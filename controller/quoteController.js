@@ -12,5 +12,6 @@ export async function initQuoteController() {
 }
 
 function initQuote(quoteData) {
-  document.getElementById("quote").textContent = `"${quoteData}"`;
+  const quote = document.getElementById("quote");
+  quote.textContent = `"${quoteData}"`;
 }

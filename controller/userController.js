@@ -16,14 +16,16 @@ export async function initUserController() {
 }
 
 function initMainUser(mainUser) {
-  document.getElementById("main-user-picture").src = mainUser.picture;
-  document.getElementById("main-user-picture").alt = mainUser.firstName;
+  const mainUserPicture = document.getElementById("main-user-picture");
+  const mainUserFullname = document.getElementById("main-user-picture");
+  const mainUserLocation = document.getElementById("main-user-picture");
 
-  document.getElementById("main-user-fullname").textContent =
-    `${mainUser.firstName} ${mainUser.lastName}`;
+  mainUserPicture.src = mainUser.picture;
+  mainUserPicture.alt = mainUser.firstName;
 
-  document.getElementById("main-user-location").textContent =
-    `${mainUser.city}, ${mainUser.state}`;
+  mainUserFullname.textContent = `${mainUser.firstName} ${mainUser.lastName}`;
+
+  mainUserLocation.textContent = `${mainUser.city}, ${mainUser.state}`;
 }
 
 function initFriends(friends) {
