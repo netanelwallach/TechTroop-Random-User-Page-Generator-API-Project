@@ -35,8 +35,12 @@ export function initFriends(friends) {
   const friendsContainer = document.getElementById("friends-container");
   friendsContainer.innerHTML = friends
     .map(
-      (friend) => `
-      <li>
+      (friend) =>
+        // add data in friend like in user
+        `
+            <li data-first-name="${friend.firstName}" data-last-name="${friend.lastName}"
+             data-picture="${friend.picture}"> 
+
         <img src="${friend.picture}" alt="${friend.firstName} ${friend.lastName}">
         <span>${friend.firstName} ${friend.lastName}</span>
       </li>

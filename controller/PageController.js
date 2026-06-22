@@ -5,7 +5,6 @@ export function initPageStateController() {
   const loadBtn = document.getElementById("load-user");
 
   if (saveBtn) saveBtn.addEventListener("click", savePageSnapshot);
-  if (loadBtn) loadBtn.addEventListener("click", loadPageSnapshot);
 }
 
 function savePageSnapshot() {
@@ -29,18 +28,16 @@ function savePageSnapshot() {
     },
     aboutMe: document.getElementById("about-me").textContent,
     friends: Array.from(document.querySelectorAll("#friends-container li")).map(
+      // get the elements of frindes to save
       (li) => ({
-        picture: li.querySelector("img").src,
-        firstName: li.querySelector("span").textContent.split(" ")[0],
-        lastName: li
-          .querySelector("span")
-          .textContent.split(" ")
-          .slice(1)
-          .join(" "),
+        picture: li.dataset.picture,
+        firstName: li.dataset.firstName,
+        lastName: li.dataset.lastName,
       }),
     ),
   };
 
   localStorage.setItem("savedUserPage", JSON.stringify(pageSnapshot));
+  console.log("User page snapshot saved locally!");
   console.log("User page snapshot saved locally!");
 }
