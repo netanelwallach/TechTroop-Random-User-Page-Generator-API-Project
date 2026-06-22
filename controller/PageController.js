@@ -11,6 +11,8 @@ export function initPageStateController() {
 
   if (saveBtn) saveBtn.addEventListener("click", savePageSnapshot);
   if (loadBtn) loadBtn.addEventListener("click", loadPageSnapshot);
+
+  updateDropdownUI();
 }
 
 function savePageSnapshot() {
@@ -23,27 +25,26 @@ function savePageSnapshot() {
   }
 
   const userId = mainUserDiv.dataset.userId;
+  const city = mainUserDiv.dataset.city || "";
+  const state = mainUserDiv.dataset.state || "";
 
+  const picture = document.getElementById("main-user-picture").src;
   // Split up fullName back to firstName and lastName and location to city and state
   const fullName = document.getElementById("main-user-fullname");
   const nameParts = fullName.textContent.split(" ");
   const firstName = nameParts[0];
   const lastName = nameParts.slice(1).join(" ");
 
-  const location = document.getElementById("main-user-location");
-  const locationParts = location.textContent.split(", ");
-  const city = locationParts[0];
-  const state = locationParts[1];
-
   const quote = document.getElementById("quote").textContent;
 
   const pokemonName = document.getElementById("pokemon-name").textContent;
+  const pokemonImage = document.getElementById("pokemon-image").src;
 
   const aboutMe = document.getElementById("about-me").textContent;
 
   const pageSnapshot = {
-    id: mainUserDiv.dataset.userId,
-    picture: document.getElementById("main-user-picture").src,
+    id: userId,
+    picture: picture,
     firstName: firstName,
     lastName: lastName,
     city: city,
@@ -51,7 +52,7 @@ function savePageSnapshot() {
     quote: quote,
     pokemon: {
       name: pokemonName,
-      image: pokemonImage ? pokemonImage.src : "",
+      image: pokemonImage,
     },
     aboutMe: aboutMe,
     friends: Array.from(document.querySelectorAll("#friends-container li")).map(
@@ -69,39 +70,45 @@ function savePageSnapshot() {
   currentCollection[userId] = pageSnapshot;
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentCollection));
 
-  localStorage.setItem("savedUserPage", JSON.stringify(pageSnapshot));
   console.log("User page snapshot saved locally!");
 }
 
-function loadPageSnapshot() {
+export function loadPageSnapshot() {
+  // Pull your target data directly from your saved selection system
+  // For standard loading from the active record:
+  const currentCollection =
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {};
+
+  const savedKeys = Object.keys(currentCollection);
+  if (savedKeys.length === 0) {
+    console.log("No profiles saved in storage yet.");
+    return;
+  }
+
   // const savedUserData = localStorage.getItem("savedUserPage");
+  const user = currentCollection[savedKeys[0]];
+
+  renderMainUser(user);
+  renderFriends(user.friends || []);
+  renderPokemon(user.pokemon);
+  renderQuote(user.quote);
+  renderAboutMe(user.aboutMe);
+}
+
+function updateDropdownUI() {
   const dropdown = document.getElementById("saved-users-dropdown");
   if (!dropdown) return;
 
-  const selectedUserId = dropdown.value;
-
-  if (!selectedUserId) {
-    console.log("Please select a saved user from the dropdown menu first.");
-    return;
-  }
-
-  // const snapshot = JSON.parse(savedUserData);
   const currentCollection =
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {};
-  const user = currentCollection[selectedUserId];
 
-  if (!user) {
-    alert("Error: Selected user data profile could not be retrieved.");
-    return;
-  }
+  dropdown.innerHTML = '<option value="">-- Select Saved User --</option>';
 
-  renderMainUser(user);
-  renderFriends(user.friends);
-
-  renderPokemon(user.pokemon);
-
-  renderQuote(user.quote);
-  renderAboutMe(user.aboutMe);
-
-  console.log("User page loaded successfully!");
+  Object.keys(currentCollection).forEach((userId) => {
+    const user = currentCollection[userId];
+    const optionNode = document.createElement("option");
+    optionNode.value = userId;
+    optionNode.textContent = `${user.firstName} ${user.lastName}`;
+    dropdown.appendChild(optionNode);
+  });
 }

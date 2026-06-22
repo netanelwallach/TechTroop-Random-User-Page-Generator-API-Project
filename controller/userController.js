@@ -22,6 +22,8 @@ export function renderMainUser(mainUser) {
   const mainUserLocation = document.getElementById("main-user-location");
 
   mainUserDiv.dataset.userId = mainUser.id;
+  mainUserDiv.dataset.city = mainUser.city;
+  mainUserDiv.dataset.state = mainUser.state;
 
   mainUserPicture.src = mainUser.picture;
   mainUserPicture.alt = mainUser.firstName;
