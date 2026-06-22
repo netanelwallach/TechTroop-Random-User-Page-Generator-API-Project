@@ -3,6 +3,8 @@ import { renderPokemon } from "./pokemonController.js";
 import { renderQuote } from "./quoteController.js";
 import { renderAboutMe } from "./aboutMeController.js";
 
+const LOCAL_STORAGE_KEY = "savedUserPagesCollection";
+
 export function initPageStateController() {
   const saveBtn = document.getElementById("save-user");
   const loadBtn = document.getElementById("load-user");
@@ -19,6 +21,8 @@ function savePageSnapshot() {
     console.log("No user data available to save!");
     return;
   }
+
+  const userId = mainUserDiv.dataset.userId;
 
   // Split up fullName back to firstName and lastName and location to city and state
   const fullName = document.getElementById("main-user-fullname");
@@ -38,7 +42,7 @@ function savePageSnapshot() {
   const aboutMe = document.getElementById("about-me").textContent;
 
   const pageSnapshot = {
-    userId: mainUserDiv.dataset.userId,
+    id: mainUserDiv.dataset.userId,
     picture: document.getElementById("main-user-picture").src,
     firstName: firstName,
     lastName: lastName,
@@ -59,6 +63,11 @@ function savePageSnapshot() {
       }),
     ),
   };
+
+  const currentCollection =
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {};
+  currentCollection[userId] = pageSnapshot;
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentCollection));
 
   localStorage.setItem("savedUserPage", JSON.stringify(pageSnapshot));
   console.log("User page snapshot saved locally!");
