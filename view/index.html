@@ -8,37 +8,40 @@
     <script type="module" src="../app.js" defer></script>
   </head>
   <body>
-    <button type="button" id="generate-user">Generate User</button>
-    <button id="save-user">Save User Page</button>
+    <header class="action-bar">
+      <button type="button" id="generate-user">Generate User</button>
+      <button id="save-user">Save User Page</button>
+      <select id="saved-users-dropdown">
+        <option value="">-- Select Saved User --</option>
+      </select>
+      <button id="load-user">Load User Page</button>
+    </header>
 
-    <select id="saved-users-dropdown">
-      <option value="">-- Select Saved User --</option>
-    </select>
+    <main class="dashboard-container">
+      <section class="profile-col">
+        <div id="main-user">
+          <img id="main-user-picture" src="" alt="User Picture" />
+          <h2 id="main-user-fullname">Loading Name...</h2>
+          <h3 id="main-user-location"></h3>
+        </div>
 
-    <button id="load-user">Load User Page</button>
-    <div id="main-user">
-      <img id="main-user-picture" src="" alt="User Picture" />
+        <div id="quote"></div>
 
-      <h2 id="main-user-fullname">Loading Name...</h2>
+        <div id="about-me"></div>
+      </section>
 
-      <h3 id="main-user-location"></h3>
-    </div>
+      <section class="feature-col">
+        <div id="pokemon">
+          <h4>Pokemon</h4>
+          <div id="pokemon-name">Loading Pokemon Name</div>
+          <img id="pokemon-image" src="" alt="pokemon-name" />
+        </div>
 
-    <h3>Favourite Quote:</h3>
-    <div id="quote"></div>
-
-    <div id="pokemon">
-      <h4>Pokemon</h4>
-      <div id="pokemon-name">Loading Pokemon Name</div>
-      <img id="pokemon-image" src="" alt="pokemon-name" />
-    </div>
-
-    <h3>About Me</h3>
-    <div id="about-me"></div>
-
-    <div id="friends-panel">
-      <h3>My Friends</h3>
-      <ul id="friends-container"></ul>
-    </div>
+        <div id="friends-panel">
+          <h3>My Friends</h3>
+          <ul id="friends-container"></ul>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
