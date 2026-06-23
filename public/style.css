@@ -39,3 +39,117 @@ body {
   max-width: 600px;
   box-sizing: border-box;
 }
+
+#pokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  border-top: 8px solid #ff0000;
+  border-bottom: 8px solid #ffde00;
+  box-shadow: 0 4px 10px #00000014;
+
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+#pokemon h4 {
+  margin: 0 0 8px 0;
+  color: #3b4cca;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#pokemon-name {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #1a202c;
+  margin-bottom: 15px;
+}
+
+#pokemon-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  background-color: #f7fafc;
+  border-radius: 50%;
+  padding: 10px;
+  border: 3px solid #3b4cca;
+}
+
+#about-me {
+  display: flex;
+  flex-direction: column;
+
+  color: #2d3748;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  white-space: pre-line;
+
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px #00000014;
+  border: 1px solid #e2e8f0;
+
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+#friends-panel {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px #0000000d;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+#friends-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 15px;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#friends-container li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  background-color: #f7fafc;
+  padding: 12px;
+  border-radius: 8px;
+  width: calc(33.333% - 10px);
+  min-width: 100px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#friends-container li img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+}
+
+#friends-container li span {
+  font-size: 0.9rem;
+  color: #4a5568;
+  font-weight: 500;
+}
