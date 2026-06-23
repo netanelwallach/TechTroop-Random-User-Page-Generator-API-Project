@@ -1,3 +1,6 @@
+/* ==========================================
+   1. GLOBAL BASE STYLES
+   ========================================== */
 body {
   display: flex;
   flex-direction: column;
@@ -9,190 +12,9 @@ body {
   padding: 20px;
 }
 
-#main-user {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 25px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px #0000001a;
-  width: 100%;
-  max-width: 600px;
-}
-
-#quote {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-style: italic;
-  font-size: 1.2rem;
-  color: #4a5568;
-  background-color: #ebf8ff;
-  padding: 15px 25px;
-  border-left: 5px solid #3182ce;
-  border-radius: 4px;
-
-  width: 100%;
-  max-width: 600px;
-  box-sizing: border-box;
-}
-
-#pokemon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  border-top: 8px solid #ff0000;
-  border-bottom: 8px solid #ffde00;
-  box-shadow: 0 4px 10px #00000014;
-
-  width: 100%;
-  max-width: 300px;
-  box-sizing: border-box;
-}
-
-#pokemon h4 {
-  margin: 0 0 8px 0;
-  color: #3b4cca;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-#pokemon-name {
-  font-weight: bold;
-  font-size: 1.3rem;
-  color: #1a202c;
-  margin-bottom: 15px;
-}
-
-#pokemon-image {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  background-color: #f7fafc;
-  border-radius: 50%;
-  padding: 10px;
-  border: 3px solid #3b4cca;
-}
-
-#about-me {
-  display: flex;
-  flex-direction: column;
-
-  color: #2d3748;
-  line-height: 1.6;
-  font-size: 1.05rem;
-  white-space: pre-line;
-
-  background-color: #ffffff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px #00000014;
-  border: 1px solid #e2e8f0;
-
-  width: 100%;
-  max-width: 600px;
-  box-sizing: border-box;
-}
-
-#friends-panel {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px #0000000d;
-  border: 1px solid #e2e8f0;
-  width: 100%;
-  max-width: 600px;
-  box-sizing: border-box;
-}
-
-#friends-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 15px;
-
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#friends-container li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-
-  background-color: #f7fafc;
-  padding: 12px;
-  border-radius: 8px;
-  width: calc(33.333% - 10px);
-  min-width: 100px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-#friends-container li img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #e2e8f0;
-}
-
-#friends-container li span {
-  font-size: 0.9rem;
-  color: #4a5568;
-  font-weight: 500;
-}
-
-.action-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-  max-width: 1200px;
-  margin-bottom: 10px;
-}
-
-.dashboard-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  box-sizing: border-box;
-}
-
-.profile-col {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex: 2;
-  width: 100%;
-}
-
-.feature-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  flex: 1;
-  width: 100%;
-}
-
+/* ==========================================
+   2. MODERN ACTION BAR CONTROLS
+   ========================================== */
 .action-bar {
   display: flex;
   flex-direction: row;
@@ -205,7 +27,7 @@ body {
   padding: 12px;
   background-color: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 2px 4px #0000000a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
 }
 
@@ -218,7 +40,6 @@ body {
   border-radius: 6px;
   padding: 10px 18px;
   cursor: pointer;
-
   transition:
     background-color 0.2s ease,
     transform 0.1s ease;
@@ -255,4 +76,222 @@ body {
 
 .action-bar select:focus {
   border-color: #3182ce;
+}
+
+/* ==========================================
+   3. DESKTOP DASHBOARD GRID LAYOUT
+   ========================================== */
+.dashboard-container {
+  display: flex;
+  flex-direction: row; /* Side-by-side on desktop */
+  flex-wrap: wrap; /* Allows elements to wrap when screen narrows */
+  justify-content: center;
+  align-items: flex-start; /* Prevents stretching card heights matching layout rows */
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.profile-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 2; /* Allocates 2/3 width ratio on desktop screens */
+  max-width: 650px; /* Limits profile items scaling too wide on high resolutions */
+  width: 100%;
+}
+
+.feature-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex: 1; /* Allocates 1/3 width ratio on desktop screens */
+  max-width: 450px; /* Keeps features compact and crisp on desktop screen views */
+  width: 100%;
+}
+
+/* ==========================================
+   4. COMPONENT CARDS STYLING
+   ========================================== */
+#main-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px #0000001a;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#quote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #4a5568;
+  background-color: #ebf8ff;
+  padding: 15px 25px;
+  border-left: 5px solid #3182ce;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#pokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  border-top: 8px solid #ff0000;
+  border-bottom: 8px solid #ffde00;
+  box-shadow: 0 4px 10px #00000014;
+  width: 100%; /* Let the card completely scale out to match the outer columns */
+  box-sizing: border-box;
+}
+
+#pokemon h4 {
+  margin: 0 0 8px 0;
+  color: #3b4cca;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#pokemon-name {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #1a202c;
+  margin-bottom: 15px;
+}
+
+#pokemon-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  background-color: #f7fafc;
+  border-radius: 50%;
+  padding: 10px;
+  border: 3px solid #3b4cca;
+}
+
+#about-me {
+  display: flex;
+  flex-direction: column;
+  color: #2d3748;
+  line-height: 1.6;
+  font-size: 1.05rem;
+  white-space: pre-line;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px #00000014;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#friends-panel {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px #0000000d;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#friends-panel h3 {
+  margin-top: 0;
+  color: #2d3748;
+}
+
+#friends-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#friends-container li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background-color: #f7fafc;
+  padding: 12px;
+  border-radius: 8px;
+  width: calc(33.333% - 10px);
+  min-width: 100px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#friends-container li img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+}
+
+#friends-container li span {
+  font-size: 0.9rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* ==========================================
+   5. RESPONSIVE LAYOUT (MEDIA QUERIES)
+   ========================================== */
+
+/* Tablet & Stacked Column Views (Under 900px width) */
+@media (max-width: 900px) {
+  .action-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .dashboard-container {
+    flex-direction: column; /* Flips grid structure down vertically */
+    align-items: center; /* Centers everything perfectly down mid screen track */
+    gap: 25px;
+  }
+
+  /* Unifies all layout column blocks to align to identical widths when stacked */
+  .profile-col,
+  .feature-col {
+    flex: none;
+    width: 100%;
+    max-width: 600px; /* Forces all containers to stay matching at exactly 600px width max */
+  }
+
+  #friends-panel h3 {
+    text-align: center;
+  }
+}
+
+/* Tiny Mobile Screens (Under 480px width) */
+@media (max-width: 480px) {
+  #friends-container li {
+    width: calc(50% - 8px); /* Beautiful 2-column list items grid */
+  }
+
+  /* User profile panel shifts to vertical stacking layout on tiny phone widths */
+  #main-user {
+    flex-direction: column;
+    text-align: center;
+  }
 }
